@@ -5,9 +5,8 @@ child(laura, rose).
 
 descend(X, Y) :- child(X, Y).
 
-descend(X, Y) :- child(X, Z),
-                 descend(Z, Y).
+descend(X, Y) :- descend(Z, Y), 
+                 child(X, Z).
 
-numeral(0).
 
-numeral(succ(X)) :- numeral(X).
+
