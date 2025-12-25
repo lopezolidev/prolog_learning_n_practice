@@ -14,27 +14,30 @@ byPlane(paris,losAngeles).
 byPlane(bangkok,auckland).
 byPlane(losAngeles,auckland).
 
+travel(O, D) :- byCar(O, D); byTrain(O, D) ; byPlane(O, D).
+travel(O, D) :- (byCar(O, Z); byTrain(O, Z) ; byPlane(O, Z)) , travel(Z, D).
 
+% now we want to know which specific cities we must travel to reach destiny
 
-travel(S, D) :- byCar(S, D). % base case
-travel(S, D) :- byCar(S, Z), travel(Z, D). % recursive call
+% go(O, D) :- byCar(O, D) ;            byTrain(O, D) ;byPlane(O, D) .
 
-travel(S, D) :- byTrain(S, D). % base case
-travel(S, D) :- byTrain(S, Z), travel(Z, D). % recursive call
+% travel(O, D, go(O, D)) :- go(O, D).
 
-travel(S, D) :- byPlane(S, D). % base case
-travel(S, D) :- byPlane(S, Z), travel(Z, D). % recursive call
+% travel(O, D, go(O, Z, R)) :-    go(O, Z), travel(Z, D, R).
 
-% returning "how" to travel from one place to another with some transport medium.
+% no we want to know which transportation medium we used to get to the destination
 
-travel(S, D, byCar(S, D)) :- byCar(S, D).
-travel(S, D, byCar(S, R)) :-     byCar(S, Z) ,
-                                    travel(Z, D, R).
+% byCar base case
+travel(O, D, byCar(O, D)) :- byCar(O, D).
+% byCar recursive case
+travel(O, D, byCar(O, R)) :- byCar(O, Z), travel(Z, D, R).
 
-travel(S, D, byTrain(S, D)) :- byTrain(S, D).
-travel(S, D, byTrain(S, R)) :-   byTrain(S, Z) ,
-                                    travel(Z, D, R).
+% byTrain base case
+travel(O, D, byTrain(O, D)) :- byTrain(O, D).
+% byTrain recursive case
+travel(O, D, byTrain(O, R)) :- byTrain(O, Z) , travel(Z, D, R).
 
-travel(S, D, byPlane(S, D)) :- byPlane(S, D).
-travel(S, D, byPlane(S, R)) :-   byPlane(S, Z) ,
-                                    travel(Z, D, R).
+% byPlane base case
+travel(O, D, byPlane(O, D)) :- byPlane(O, D).
+% byPlane recursive case
+travel(O, D, byPlane(O, R)) :- byPlane(O, Z) , travel(Z, D, R).
