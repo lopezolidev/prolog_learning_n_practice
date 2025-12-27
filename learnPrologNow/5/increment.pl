@@ -1,0 +1,1 @@
+increment(A, B) :- A is B-1.
