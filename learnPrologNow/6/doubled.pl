@@ -1,0 +1,1 @@
+doubled(L) :- append(S, S, L).
