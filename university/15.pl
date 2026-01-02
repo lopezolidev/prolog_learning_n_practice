@@ -4,3 +4,4 @@
 
 insert([_ | T], 1, N, [N | T]).
 insert([H | T], I, N, [H | R]) :- Ialt is I - 1, insert(T, Ialt, N, R).
+
