@@ -6,3 +6,9 @@ sufijo(S, L) :- append(_, S, L).
 prefijo(P, L) :- append(P, _, L).
 
 subLista(SubL, L) :- sufijo(S, L), prefijo(SubL, S).
+
+% version 2 con pattern matching
+
+subLista2([], _) .
+subLista2([X | T], [X | Xs]) :- subLista2(T, Xs) , !.
+subLista2(SubL, [_ | Xs]) :- subLista2(SubL, Xs).
