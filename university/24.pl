@@ -13,7 +13,7 @@ sustituir(X, Y, arbol(X, Izq, Der), arbol(Y, Izq2, Der2)) :-
     
 
 % si no son iguales los nodos raíz, no hacemos nada
-sustituir(X, Y, arbol(X, Izq, Der), arbol(Z, Izq2, Der2)) :-
+sustituir(X, Y, arbol(Z, Izq, Der), arbol(Z, Izq2, Der2)) :-
     sustituir(X, Y, Izq, Izq2) ,
     sustituir(X, Y, Der, Der2) .
 
