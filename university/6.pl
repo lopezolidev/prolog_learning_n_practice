@@ -1,4 +1,4 @@
-rep(Xs, V) :- repAcc(Xs, A, V).
+rep(Xs, V) :- repAcc(Xs, 0, V).
 % original function calls repAcc to carry an accumulator
 
 repAcc([], A, A).
